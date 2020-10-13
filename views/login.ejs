@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <div class="container">
+    <div class="row text-center mb-4">
+      <div class="col-md-12">
+        <img src="images/logo.svg">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="login-title text-center">
+              <h4>Log In</h4>
+            </div>
+            <div class="login-form mt-4">
+              <form action="/login" method="POST">
+                <div class="form-row">
+                  <div class="text-center w-100">
+                    <% if(error){ %>
+                      <div class="alert alert-danger" role="alert">
+                        <%= error %>
+                      </div>
+                    <% } %>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label for="username">Username</label>
+                    <input id="username" placeholder="Username" class="form-control" type="text" name="username">
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label for="username">Password</label>
+                    <input type="password" class="form-control" id="pass" placeholder="Password" name="password">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <button type="submit" class="btn btn-danger btn-block">Submit</button>
+                </div>
+              </form>
+            </div>
+            <div class="logi-forgot text-right mt-2">
+              <a href="/register">Register </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
