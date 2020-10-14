@@ -13,13 +13,14 @@
   <main role="main" class="container">
     <div class="row">
       <div class="col-md-12">
-        <h3 class="mt-5">Position List</h3>
+        <% include ../partials/alert %>
+        
         <% if(data.length > 0){ %>
+          <h3 class="mt-5">Position List</h3>
           <table class="table table-striped table-bordered">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">Project Name</th>
-                <th scope="col">Client Name</th>
                 <th scope="col">Technologies</th>
                 <th scope="col">Role</th>
                 <th scope="col">Status</th>
@@ -30,7 +31,6 @@
               <% data.forEach(function(position){ %>
                 <tr>
                   <td> <%= position.name %> </td>
-                  <td> <%= position.clientName %> </td>
                   <td> <%= position.technologies %> </td>
                   <td> <%= position.role %> </td>
                   <td>
@@ -40,7 +40,10 @@
                       <span class="badge badge-danger">Closed</span>
                     <% } %>
                   </td>
-                  <td> Action </td>
+                  <td> 
+                    <a href="/position/view/<%= position.id %>">View</a> | 
+                    <a href="/position/edit/<%= position.id %>">Edit</a>  
+                  </td>
                 </tr>  
               <% }); %>
             </tbody>

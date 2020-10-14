@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include ../partials/header %>
+</head>
+
+<body>
+  <header>
+    <% include ../partials/navigation %>
+  </header>
+  <!-- Begin page content -->
+  <main role="main" class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="mt-5">Edit Position</h1>
+        <% include ../partials/alert %>
+        <form action="/position/edit/<%- data.id%>" method="POST">
+          <input type="hidden" id="id" name="id" value="<%- data.id%>">
+          <div class="form-group">
+            <label for="name">Project Name</label>
+            <input type="text" class="form-control" id="name" name="name" value="<%- data.name%>">
+          </div>
+          <div class="form-group">
+            <label for="clientName">Client Name</label>
+            <input type="text" class="form-control" id="clientName" name="clientName" value="<%- data.clientName%>">
+          </div>
+          <div class="form-group">
+            <label for="technologies">Technologies</label>
+            <input type="text" class="form-control" id="technologies" name="technologies"
+              placeholder="Enter comma seprated name" value="<%- data.technologies%>">
+          </div>
+          <div class="form-group">
+            <label for="role">Role</label>
+            <input type="text" class="form-control" id="role" name="role" value="<%- data.role%>">
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea rows="3" class="form-control" id="description" name="description"><%- data.description%></textarea>
+          </div>
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select class="form-control" id="status" name="status">
+              <option>Select Status</option>
+              <option value="1" <%= data.status == '1' ? 'selected' : ''%>>Open</option>
+              <option value="2" <%= data.status == '2' ? 'selected' : ''%>>Closed</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+      </div>
+    </div>
+    <br/>
+  </main>
+</body>
+<% include ../partials/footer %>
+
+</html>

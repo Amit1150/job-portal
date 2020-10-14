@@ -19,6 +19,7 @@ var loginRouter = require('./routes/login');
 var registerRouter = require('./routes/register');
 var positionsRouter = require('./routes/manager/position-list');
 var positionAddRouter = require('./routes/manager/position-add');
+var positionEditRouter = require('./routes/manager/position-edit');
 var usersRouter = require('./routes/users');
 
 var app = express();
@@ -40,6 +41,7 @@ app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/position/list', authMiddleWare.isAuthenticated(enums.roles.ProjectManager), positionsRouter);
 app.use('/position/add', authMiddleWare.isAuthenticated(enums.roles.ProjectManager), positionAddRouter);
+app.use('/position/edit', authMiddleWare.isAuthenticated(enums.roles.ProjectManager), positionEditRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
