@@ -3,6 +3,12 @@ const roles = {
   ProjectManager: '2'
 };
 
+jobStatus = {
+  Open: '1',
+  Closed: '2',
+}
+
 module.exports = {
-  roles
+  roles,
+  jobStatus
 }

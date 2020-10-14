@@ -17,7 +17,8 @@ db.connectToDatabase(process.env.DB_URL);
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
 var registerRouter = require('./routes/register');
-var positionsRouter = require('./routes/positions');
+var positionsRouter = require('./routes/manager/position-list');
+var positionAddRouter = require('./routes/manager/position-add');
 var usersRouter = require('./routes/users');
 
 var app = express();
@@ -32,17 +33,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(function (req, res, next) {
-  req.db = db;
-  next();
-});
-
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
-app.use('/positions', authMiddleWare.isAuthenticated(enums.roles.Employee), positionsRouter);
+app.use('/position/list', authMiddleWare.isAuthenticated(enums.roles.ProjectManager), positionsRouter);
+app.use('/position/add', authMiddleWare.isAuthenticated(enums.roles.ProjectManager), positionAddRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

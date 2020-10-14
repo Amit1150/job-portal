@@ -25,8 +25,8 @@ router.post('/', (req, res) => {
           res.render('login');
         }
         const token = req.user.generateJwtToken();
-        res.cookie('AuthToken', token, { maxAge: 900000, httpOnly: true });
-        res.redirect('/positions');
+        res.cookie('AuthToken', token, { maxAge: process.env.COOKIE_MAX_AGE, httpOnly: true });
+        res.redirect('/position/list');
       });
     },
   )(req, res);
