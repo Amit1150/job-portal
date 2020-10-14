@@ -9,7 +9,8 @@ const PositionSchema = new Schema({
   role: String,
   description: String,
   status: String,
-  createdBy: String
+  createdBy: String,
+  lastUpdatedOn: Date
 });
 
 module.exports = mongoose.model('Position', PositionSchema);

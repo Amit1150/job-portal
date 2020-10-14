@@ -13,7 +13,8 @@ router.post('/', function (req, res, next) {
   try {
     const position = new Position({
       ...req.body,
-      createdBy: req.user.id
+      createdBy: req.user.id,
+      lastUpdatedOn: new Date()
     });
 
     position.save((err, result) => {
