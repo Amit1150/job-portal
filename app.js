@@ -17,10 +17,15 @@ db.connectToDatabase(process.env.DB_URL);
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
 var registerRouter = require('./routes/register');
-var positionsRouter = require('./routes/manager/position-list');
+
+/** Manager Router */
+var positionListRouter = require('./routes/manager/position-list');
 var positionAddRouter = require('./routes/manager/position-add');
 var positionEditRouter = require('./routes/manager/position-edit');
-var usersRouter = require('./routes/users');
+
+/** Employee Router */
+var positionsRouter = require('./routes/employee/position');
+
 
 var app = express();
 
@@ -36,12 +41,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
-app.use('/position/list', authMiddleWare.isAuthenticated(enums.roles.ProjectManager), positionsRouter);
+
+/** Manager Route */
+app.use('/position/list', authMiddleWare.isAuthenticated(enums.roles.ProjectManager), positionListRouter);
 app.use('/position/add', authMiddleWare.isAuthenticated(enums.roles.ProjectManager), positionAddRouter);
 app.use('/position/edit', authMiddleWare.isAuthenticated(enums.roles.ProjectManager), positionEditRouter);
+
+/** Employee Route */
+app.use('/positions', authMiddleWare.isAuthenticated(enums.roles.Employee), positionsRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -7,7 +7,7 @@
 
 <body>
   <header>
-    <% include ../partials/manager-navigation %>
+    <% include ../partials/employee-navigation %>
   </header>
   <!-- Begin page content -->
   <main role="main" class="container">
@@ -41,8 +41,11 @@
                     <% } %>
                   </td>
                   <td> 
-                    <a href="/position/view/<%= position.id %>">View</a> | 
-                    <a href="/position/edit/<%= position.id %>">Edit</a>  
+                    <a href="/position/view/<%= position.id %>">View</a>
+                    <% if(position.status == "1"){ %>
+                      | 
+                      <a href="/position/apply/<%= position.id %>">Apply</a>  
+                    <% } %>
                   </td>
                 </tr>  
               <% }); %>
