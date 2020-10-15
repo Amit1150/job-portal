@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include ../partials/header %>
+</head>
+
+<body>
+  <header>
+    <% include ../partials/employee-navigation %>
+  </header>
+  <!-- Begin page content -->
+  <main role="main" class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <% include ../partials/alert %>
+      </div>
+      <% if(data){ %>
+        <div class="card job-details" style="width: 30rem;">
+          <div class="card-body">
+            <h5 class="card-title">Position Details</h5>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Project Name</label>
+              </div>
+              <div class="col-md-6">
+                <p><%= data.name %></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Client Name</label>
+              </div>
+              <div class="col-md-6">
+                <p><%= data.clientName %></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Technologies</label>
+              </div>
+              <div class="col-md-6">
+                <p><%= data.technologies %></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Role</label>
+              </div>
+              <div class="col-md-6">
+                <p><%= data.role %></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Description</label>
+              </div>
+              <div class="col-md-6">
+                <p><%= data.description %></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Status</label>
+              </div>
+              <div class="col-md-6">
+                <p>
+                  <% if(data.status == "1"){ %>
+                  <span class="badge badge-success">Opne</span>
+                  <% } else{ %>
+                  <span class="badge badge-danger">Closed</span>
+                  <% } %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </main>
+</body>
+<% include ../partials/footer %>
+</html>

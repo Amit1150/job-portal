@@ -4,26 +4,40 @@ const Position = require('../../models/position');
 
 router.get('/:id', function (req, res, next) {
   Position.findById(req.params.id,function(err, item) {
+    var response;
+
     if (err) {
-      res.render('../views/manager/position-edit', {
+      response = {
+        data: null,
         message: 'Some error occured.',
         type: 'danger'
-      });
+      }
     }
-    var data = {
-      id: item.id,
-      name: item.name,
-      clientName: item.clientName,
-      technologies: item.technologies,
-      role: item.role,
-      description: item.description,
-      status: item.status
+    else if (item) {
+      var data = {
+        id: item.id,
+        name: item.name,
+        clientName: item.clientName,
+        technologies: item.technologies,
+        role: item.role,
+        description: item.description,
+        status: item.status
+      };
+
+      response = {
+        data: data,
+        message: '',
+        type: ''
+      }
+    } else {
+      response = {
+        data: null,
+        message: 'Position not found.',
+        type: 'danger'
+      }
     }
-    res.render('../views/manager/position-edit', {
-      data: data,
-      message: '',
-      type: ''
-    });
+
+    res.render('../views/manager/position-edit', response);
   });
 });
 

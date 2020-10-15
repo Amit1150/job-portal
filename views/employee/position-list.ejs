@@ -14,43 +14,48 @@
     <div class="row">
       <div class="col-md-12">
         <% include ../partials/alert %>
-        
+
         <% if(data.length > 0){ %>
-          <h3 class="mt-5">Position List</h3>
-          <table class="table table-striped table-bordered">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">Project Name</th>
-                <th scope="col">Technologies</th>
-                <th scope="col">Role</th>
-                <th scope="col">Status</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% data.forEach(function(position){ %>
-                <tr>
-                  <td> <%= position.name %> </td>
-                  <td> <%= position.technologies %> </td>
-                  <td> <%= position.role %> </td>
-                  <td>
-                    <% if(position.status == "1"){ %>
-                      <span class="badge badge-success">Opne</span>
-                    <% } else{ %>
-                      <span class="badge badge-danger">Closed</span>
-                    <% } %>
-                  </td>
-                  <td> 
-                    <a href="/position/view/<%= position.id %>">View</a>
-                    <% if(position.status == "1"){ %>
-                      | 
-                      <a href="/position/apply/<%= position.id %>">Apply</a>  
-                    <% } %>
-                  </td>
-                </tr>  
-              <% }); %>
-            </tbody>
-          </table>
+        <h3 class="mt-5">Position List</h3>
+        <table class="table table-striped table-bordered">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Project Name</th>
+              <th scope="col">Technologies</th>
+              <th scope="col">Role</th>
+              <th scope="col">Status</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% data.forEach(function(position){ %>
+            <tr>
+              <td> <%= position.name %> </td>
+              <td> <%= position.technologies %> </td>
+              <td> <%= position.role %> </td>
+              <td>
+                <% if(position.status == "1"){ %>
+                <span class="badge badge-success">Opne</span>
+                <% } else{ %>
+                <span class="badge badge-danger">Closed</span>
+                <% } %>
+              </td>
+              <td>
+                <div class="d-inline-block">
+                  <a href="/positions/view/<%= position.id %>" class="btn btn-success btn-sm">View</a>
+                  <% if(position.status == "1"){ %>
+                  |
+                  <form action="/positions/apply" method="POST" class="d-inline-block">
+                    <input type="hidden" id="id" name="id" value="<%- position.id%>">
+                    <button type="submit" class="btn btn-primary btn-sm">Apply</button>
+                  </form>
+                  <% } %>
+                </div>
+              </td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
         <% } else{ %>
         <div class="alert alert-danger" role="alert">
           No record found.
