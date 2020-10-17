@@ -45,3 +45,6 @@ code {
 
 .job-details  label {font-weight: 600;}
 .login-img img {width:10%; max-height:20%;}
+.form-group .error {
+  color: red;
+}

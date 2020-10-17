@@ -1,5 +1,5 @@
 <div class="text-center w-100">
-  <% if(message){ %>
+  <% if(typeof message == 'string' && message){ %>
     <% if(type === "danger"){ %>
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <%= message %>

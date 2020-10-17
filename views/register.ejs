@@ -21,7 +21,7 @@
               <h4>Register</h4>
             </div>
             <div class="login-form mt-4">
-              <form action="/register" method="POST" enctype="multipart/form-data">
+              <form action="/register" method="POST" enctype="multipart/form-data" id="register">
                 <div class="form-row">
                   <div class="text-center w-100">
                     <% if(error){ %>
@@ -50,7 +50,7 @@
                   <div class="form-group col-md-12">
                     <label for="role">Select Role</label>
                     <select class="form-control" id="role" name="role">
-                      <option >Select Role</option>
+                      <option value="">Select Role</option>
                       <option value="1">Employee</option>
                       <option value="2">Project Manager</option>
                     </select>
@@ -74,4 +74,35 @@
     </div>
   </div>
 </body>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"
+  integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg=="
+  crossorigin="anonymous"></script>
+<script>
+  $(document).ready(function () {
+    $('#register').validate({
+      rules: {
+        username: {
+          minlength: 2,
+          required: true,
+          email:true
+        },
+        name: {
+          required: true,
+          minlength: 2,
+        },
+        password: {
+          required: true
+        },
+        role: {
+          required: true
+        },
+        image: {
+          required: true
+        }
+      }
+    });
+  });
+</script>
 </html>

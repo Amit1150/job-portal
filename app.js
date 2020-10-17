@@ -19,12 +19,10 @@ var loginRouter = require('./routes/login');
 var registerRouter = require('./routes/register');
 
 /** Manager Router */
-var positionListRouter = require('./routes/manager/position-list');
-var positionAddRouter = require('./routes/manager/position-add');
-var positionEditRouter = require('./routes/manager/position-edit');
+var managerRouter = require('./routes/manager');
 
 /** Employee Router */
-var positionsRouter = require('./routes/employee/position');
+var employeeRouter = require('./routes/employee');
 
 
 var app = express();
@@ -46,12 +44,10 @@ app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 
 /** Manager Route */
-app.use('/position/list', authMiddleWare.isAuthenticated(enums.roles.ProjectManager), positionListRouter);
-app.use('/position/add', authMiddleWare.isAuthenticated(enums.roles.ProjectManager), positionAddRouter);
-app.use('/position/edit', authMiddleWare.isAuthenticated(enums.roles.ProjectManager), positionEditRouter);
+app.use("/manager", authMiddleWare.isAuthenticated(enums.roles.ProjectManager), managerRouter);
 
 /** Employee Route */
-app.use('/positions', authMiddleWare.isAuthenticated(enums.roles.Employee), positionsRouter);
+app.use('/positions', authMiddleWare.isAuthenticated(enums.roles.Employee), employeeRouter);
 
 
 // catch 404 and forward to error handler
@@ -70,8 +66,15 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   if (err.name === 'UnauthorizedError') {
     res.render('login', {error: 'Please login to continue'});
+  }else if (err.status == 404) {
+    res.render('error', {
+      message: 'Page not found.'
+    });
+  } else {
+    res.render('error', {
+      message: 'Some unexpected error occured.'
+    });
   }
-  res.render('error');
 });
 
 module.exports = app;

@@ -15,7 +15,7 @@
       <div class="col-md-12">
         <% include ../partials/alert %>
         
-        <% if(data.length > 0){ %>
+        <% if(typeof data == 'object' && data){ %>
           <h3 class="mt-5">Position List</h3>
           <table class="table table-striped table-bordered">
             <thead class="thead-dark">
@@ -41,7 +41,7 @@
                     <% } %>
                   </td>
                   <td> 
-                    <a href="/position/edit/<%= position.id %>">Edit</a>  
+                    <a href="/manager/position/edit/<%= position.id %>">Edit</a>  
                   </td>
                 </tr>  
               <% }); %>

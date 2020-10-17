@@ -15,8 +15,8 @@
       <div class="col-md-12">
         <h1 class="mt-5">Edit Position</h1>
         <% include ../partials/alert %>
-        <% if(data){ %>
-        <form action="/position/edit/<%- data.id%>" method="POST">
+        <% if(typeof data == 'object' && data){ %>
+        <form method="POST" id="position">
           <input type="hidden" id="id" name="id" value="<%- data.id%>">
           <div class="form-group">
             <label for="name">Project Name</label>
@@ -43,7 +43,7 @@
           <div class="form-group">
             <label for="status">Status</label>
             <select class="form-control" id="status" name="status">
-              <option>Select Status</option>
+              <option value="">Select Status</option>
               <option value="1" <%= data.status == '1' ? 'selected' : ''%>>Open</option>
               <option value="2" <%= data.status == '2' ? 'selected' : ''%>>Closed</option>
             </select>
@@ -57,5 +57,34 @@
   </main>
 </body>
 <% include ../partials/footer %>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"
+  integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg=="
+  crossorigin="anonymous"></script>
+<script>
+  $(document).ready(function () {
+    $('#position').validate({
+      rules: {
+        name: {
+          minlength: 2,
+          required: true
+        },
+        clientName: {
+          minlength: 2,
+          required: true
+        },
+        technologies: {
+          minlength: 2,
+          required: true
+        },
+        role: {
+          minlength: 2,
+          required: true
+        },
+        status: {
+          required: true
+        },
+      }
+    });
+  });
+</script>
 </html>

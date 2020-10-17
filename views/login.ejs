@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Login - Job Portal</title>
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -21,13 +22,13 @@
               <h4>Log In</h4>
             </div>
             <div class="login-form mt-4">
-              <form action="/login" method="POST">
+              <form action="/login" method="POST" id="login">
                 <div class="form-row">
                   <div class="text-center w-100">
                     <% if(error){ %>
-                      <div class="alert alert-danger" role="alert">
-                        <%= error %>
-                      </div>
+                    <div class="alert alert-danger" role="alert">
+                      <%= error %>
+                    </div>
                     <% } %>
                   </div>
                   <div class="form-group col-md-12">
@@ -53,4 +54,26 @@
     </div>
   </div>
 </body>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"
+  integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg=="
+  crossorigin="anonymous"></script>
+<script>
+  $(document).ready(function () {
+    $('#login').validate({
+      rules: {
+        username: {
+          minlength: 2,
+          required: true,
+          email:true
+        },
+        password: {
+          required: true
+        }
+      }
+    });
+  });
+</script>
+
 </html>

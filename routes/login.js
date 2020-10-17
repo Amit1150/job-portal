@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const User = require('../models/user');
 const enums = require('../utils/enums');
 
 /* GET Login page. */
@@ -9,7 +8,7 @@ router.get('/', function (req, res, next) {
   res.render('login', { error: '' });
 });
 
-
+/** Login request */
 router.post('/', (req, res) => {
   passport.authenticate(
     'local',
@@ -28,7 +27,7 @@ router.post('/', (req, res) => {
         const token = req.user.generateJwtToken();
         res.cookie('AuthToken', token, { maxAge: process.env.COOKIE_MAX_AGE, httpOnly: true });
         if(req.user.role == enums.roles.ProjectManager) {
-          res.redirect('/position/list');
+          res.redirect('/manager/positions');
         } else {
           res.redirect('/positions');
         }
