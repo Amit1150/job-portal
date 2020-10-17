@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Position = require('../../models/position');
+const NotificationService = require('../../services/notification.service');
 
 router.get('/', function (req, res, next) {
   res.render('../views/manager/position-add', {
@@ -24,6 +25,7 @@ router.post('/', function (req, res, next) {
           type: 'danger'
         });
       }
+      NotificationService.subscribeToJobByManager(result.id);
       res.render('../views/manager/position-add', {
         message: 'Position added successfully.',
         type: 'success'

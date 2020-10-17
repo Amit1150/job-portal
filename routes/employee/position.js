@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Position = require('../../models/position');
-const AppliedPosition = require('../../models/appliedposition');
+const positionService = require('../../services/position.service');
 
 /** Get the position list */
 router.get('/', function (req, res, next) {
@@ -71,10 +71,7 @@ router.get('/view/:id', function (req, res, next) {
 
 /** Apply for given position id */
 router.post('/apply', function (req, res, next) {
-  res.render('../views/employee/apply', {
-    message: '',
-    type: ''
-  });
+  positionService.validateAndApplyPosition(req, res);
 });
 
 

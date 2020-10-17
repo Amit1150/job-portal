@@ -1,11 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const Position = require('../../models/position');
+const enums = require('../../utils/enums');
+const NotificationService = require('../../services/notification.service');
 
 router.get('/:id', function (req, res, next) {
-  Position.findById(req.params.id,function(err, item) {
-    var response;
+  var query = {'_id': req.params.id , 'createdBy': req.user.id };
 
+  Position.findOne(query,function(err, item) {
+    var response;
     if (err) {
       response = {
         data: null,
@@ -43,7 +46,7 @@ router.get('/:id', function (req, res, next) {
 
 router.post('/:id', function (req, res, next) {
   try {
-    var query = { '_id': req.params.id };
+    var query = {'_id': req.params.id , 'createdBy': req.user.id };
     var newValues = { $set: { 
       name: req.body.name,
       clientName: req.body.clientName,
@@ -61,6 +64,9 @@ router.post('/:id', function (req, res, next) {
           type: 'danger',
           data: req.body
         });
+      }
+      if(req.body.status == enums.jobStatus.Closed) {
+        NotificationService.sendNotificationToEmployee(req.params.id);
       }
       res.render('../views/manager/position-edit', {
         message: 'Position updated successfully.',

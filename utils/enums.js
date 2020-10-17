@@ -1,9 +1,10 @@
+
 const roles = {
   Employee: '1',
   ProjectManager: '2'
 };
 
-jobStatus = {
+const jobStatus = {
   Open: '1',
   Closed: '2',
 }

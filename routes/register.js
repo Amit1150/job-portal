@@ -3,7 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 const User = require('../models/user');
 const storage = require('../config/storage');
-const userService = require('../services/user');
+const userService = require('../services/user.service');
 
 /* GET register page. */
 router.get('/', function (req, res, next) {
