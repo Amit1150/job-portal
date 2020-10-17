@@ -7,6 +7,7 @@ const jwtSecret = process.env.JWT_SECRET;
 const saltRounds = process.env.SALT_ROUNDS;
 
 const UserSchema = new Schema({
+  name: String,
   username: String,
   password: String,
   role: String,
@@ -32,6 +33,7 @@ UserSchema.methods.generateJwtToken = function () {
     {
       id: this._id,
       username: this.username,
+      name: this.name,
       profilePicId: this.profilePicId,
       role: this.role,
       exp: parseInt(expirationDate.getTime() / 1000, 10),

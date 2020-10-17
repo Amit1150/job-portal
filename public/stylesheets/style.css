@@ -36,5 +36,12 @@ code {
   font-size: 80%;
 }
 
+.avatar {
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
 .job-details  label {font-weight: 600;}
 .login-img img {width:10%; max-height:20%;}

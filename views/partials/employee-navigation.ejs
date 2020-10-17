@@ -1,6 +1,6 @@
 <!-- Fixed navbar -->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-  <a class="navbar-brand" href="#">Fixed navbar</a>
+  <a class="navbar-brand" href="javascript:void(0)">Job Portal</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -11,8 +11,11 @@
         <a class="nav-link" href="/positions">Positions <span class="sr-only">(current)</span></a>
       </li>
     </ul>
-    <form class="form-inline mt-2 mt-md-0">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <span class="mt-2 mt-md-0">
+      <span class="badge badge-info">
+        Hii, <%= locals.user.name %>
+        <img src="/<%= locals.user.profilePicId %>" alt="Avatar" class="avatar">
+      </span>
+    </span>
   </div>
 </nav>

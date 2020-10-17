@@ -18,6 +18,7 @@ function getUser(username) {
 function register(req) {
   return new Promise(async function (resolve, reject) {
     const user = new User({
+      name: req.body.name,
       username: req.body.username,
       password: req.body.password,
       profilePicId: req.file.filename,

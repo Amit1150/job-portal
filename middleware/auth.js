@@ -25,7 +25,8 @@ function isAuthenticated(roles = []) {
             // user's role is not authorized
             return res.render('login', {error: 'You are not authorize to view this page. Please login to continue'});
         }
-
+        // middleware to make 'user' available to all templates
+        res.locals.user = req.user;
         // authentication and authorization successful
         next();
     }
