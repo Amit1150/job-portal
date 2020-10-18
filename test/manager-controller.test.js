@@ -79,5 +79,38 @@ describe('Manager Controller - Test', function () {
       });
     Position.findOne.restore();
   });
+
+  it('should save new position and return success', function (done) {
+
+    sinon.stub(Position, 'create');
+    Position.create.returns(stubValue[0]);
+
+    const res = {
+      render: function (body) {
+        return body;
+      },
+    };
+    const spy = sinon.spy(res, 'render');
+
+    managerCtrl
+      .savePosition({
+        user: { id: faker.random.uuid() },
+        body: {
+          name: faker.name.findName(),
+          role: faker.name.jobType(),
+          technologies: faker.lorem.word(),
+          status: enums.jobStatus.Open,
+          clientName: faker.name.findName(),
+          description: faker.name.jobDescriptor()
+        }
+      }, res, () => { })
+      .then(function () {
+        expect(res.render.called).to.be.true;
+        expect(spy.firstCall.args[1].message).to.equal('Position added successfully.');
+        done();
+      });
+    Position.create.restore();
+  });
+
   
 });

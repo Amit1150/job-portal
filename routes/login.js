@@ -17,21 +17,21 @@ router.post('/', (req, res) => {
 
       if (error || !user) {
         res.render('login', { error: 'Invalid username or password' });
+      } else {
+        /** assigns payload to req.user */
+        req.login(user, { session: false }, (error) => {
+          if (error) {
+            res.render('login');
+          }
+          const token = req.user.generateJwtToken();
+          res.cookie('AuthToken', token, { maxAge: process.env.COOKIE_MAX_AGE, httpOnly: true });
+          if (req.user.role == enums.roles.ProjectManager) {
+            res.redirect('/manager/positions');
+          } else {
+            res.redirect('/positions');
+          }
+        });
       }
-
-      /** assigns payload to req.user */
-      req.login(user, {session: false}, (error) => {
-        if (error) {
-          res.render('login');
-        }
-        const token = req.user.generateJwtToken();
-        res.cookie('AuthToken', token, { maxAge: process.env.COOKIE_MAX_AGE, httpOnly: true });
-        if(req.user.role == enums.roles.ProjectManager) {
-          res.redirect('/manager/positions');
-        } else {
-          res.redirect('/positions');
-        }
-      });
     },
   )(req, res);
 });

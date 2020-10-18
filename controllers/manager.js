@@ -31,13 +31,13 @@ async function getAllPosition(req, res, next) {
 
 async function savePosition(req, res, next) {
   try {
-    const position = new Position({
+    const position = {
       ...req.body,
       createdBy: req.user.id,
       lastUpdatedOn: new Date()
-    });
+    };
 
-    const result = await position.save();
+    const result = await Position.create(position);
 
     NotificationService.subscribeToJobByManager(result.id);
     res.render('../views/manager/position-add', {
