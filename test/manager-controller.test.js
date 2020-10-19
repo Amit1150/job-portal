@@ -112,5 +112,37 @@ describe('Manager Controller - Test', function () {
     Position.create.restore();
   });
 
-  
+  it('should update existing position and return success', function (done) {
+
+    sinon.stub(Position, 'updateOne');
+    Position.updateOne.returns(stubValue[0]);
+
+    const res = {
+      render: function (body) {
+        return body;
+      },
+    };
+    const spy = sinon.spy(res, 'render');
+
+    managerCtrl
+      .updatePosition({
+        user: { id: faker.random.uuid() },
+        params: { id: faker.random.uuid() },
+        body: {
+          id: faker.random.uuid(),
+          name: faker.name.findName(),
+          role: faker.name.jobType(),
+          technologies: faker.lorem.word(),
+          status: enums.jobStatus.Open,
+          clientName: faker.name.findName(),
+          description: faker.name.jobDescriptor()
+        }
+      }, res, () => { })
+      .then(function () {
+        expect(res.render.called).to.be.true;
+        expect(spy.firstCall.args[1].message).to.equal('Position updated successfully.');
+        done();
+      });
+    Position.updateOne.restore();
+  });
 });

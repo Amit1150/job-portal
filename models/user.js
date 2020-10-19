@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 
 const Schema = mongoose.Schema;
 const jwtSecret = process.env.JWT_SECRET;
-const saltRounds = process.env.SALT_ROUNDS;
+const saltRounds = process.env.SALT_ROUNDS || 10;
 
 const UserSchema = new Schema({
   name: String,

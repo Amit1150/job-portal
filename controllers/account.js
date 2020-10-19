@@ -16,7 +16,7 @@ async function registerUser(req, res, next) {
         role: req.body.role
       });
       await user.setHashedPassword();
-      await user.save();
+      await User.create(user);
       message = 'Registration successful. Please go back to login.';
     } else {
       error = 'Username is already exist';
@@ -32,7 +32,6 @@ async function registerUser(req, res, next) {
     });
   }
 }
-
 
 module.exports = {
   registerUser
