@@ -24,6 +24,13 @@ Application URL: [https://nagp-amit-3146957.herokuapp.com/account/login](https:/
  - **Assumption**
   - I just logged notification message in console.
  
+ ## How run this application
+ - Clone this repository
+ - move this job-portal folder
+ - open command prompt here and execute `npm i`
+ - execute `npm run start-dev` to run this application
+ - execute `npm test` to execute test cases
+ 
  
  
 
