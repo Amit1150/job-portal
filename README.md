@@ -16,6 +16,9 @@ Application URL: [https://nagp-amit-3146957.herokuapp.com/account/login](https:/
  - EJS is used for creating frontend view.
  - PassportJS and JWT is used for authentication and authorization.
  - JWT token is stored in cookie and sent along with each request. We have used `role` based authentication for handling diffrent roles in application.
+ - Application have following two roles:
+    - Employee
+    - Manager
  - Read JWT token from request cookie to validate user authenticity.
  - multer (npm package) is used as middleware for handling `multipart/form-data`, which is primarily used for uploading files. We are storing images in `uploads` folder when user upload image on register page.
  - I have written unit tests using mocha and chai.
