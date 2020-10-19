@@ -31,7 +31,7 @@ describe('Login Route - Test', function () {
     bcrypt.compare.returns(true);
 
     request(app)
-    .post('/login')
+    .post('/account/login')
     .set('content-type', 'application/x-www-form-urlencoded')
     .send({
       "username":faker.internet.email(),
@@ -55,7 +55,7 @@ describe('Login Route - Test', function () {
     bcrypt.compare.returns(true);
 
     request(app)
-    .post('/login')
+    .post('/account/login')
     .set('content-type', 'application/x-www-form-urlencoded')
     .then(function (response) {
       expect(response.status).to.equals(200);

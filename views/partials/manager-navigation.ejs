@@ -20,5 +20,15 @@
         <img src="/<%= locals.user.profilePicId %>" alt="Avatar" class="avatar">
       </span>
     </span>
+    <div class="dropdown show">
+      <a class="btn btn-info dropdown-toggle" href="javascript:void(0)" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%= locals.user.name %> <img src="/<%= locals.user.profilePicId %>" alt="Avatar" class="avatar">
+      </a>    
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <form action="/account/logout" class="dropdown-item">
+          <button type="submit" class="btn btn-link">Sign Out</button>
+        </form>
+      </div>
+    </div>
   </div>
 </nav>

@@ -33,6 +33,16 @@ async function registerUser(req, res, next) {
   }
 }
 
+async function logout(req, res, next) {
+  try{
+    res.cookie('AuthToken', {expires: Date.now()});
+  }
+  finally{
+    res.redirect('/account/login');
+  }
+}
+
 module.exports = {
-  registerUser
+  registerUser,
+  logout
 };

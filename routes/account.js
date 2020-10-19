@@ -1,15 +1,33 @@
 const express = require('express');
-const router = express.Router();
 const passport = require('passport');
+const router = express.Router();
+const storage = require('../config/storage');
 const enums = require('../utils/enums');
 
+
+const { 
+  registerUser,
+  logout
+ } = require("../controllers/account");
+
+/* GET register page. */
+router.get('/register', function (req, res, next) {
+  res.render('register', { error: '', message: '' });
+});
+
+/** Register user */
+router.post('/register', storage.upload.single('image'), registerUser);
+
+/** Logout */
+router.post('/logout', logout);
+
 /* GET Login page. */
-router.get('/', function (req, res, next) {
+router.get('/login', function (req, res, next) {
   res.render('login', { error: '' });
 });
 
 /** Login request */
-router.post('/', (req, res) => {
+router.post('/login', (req, res) => {
   passport.authenticate(
     'local',
     { session: false },

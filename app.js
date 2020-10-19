@@ -15,8 +15,9 @@ const db = require('./database/db');
 db.connectToDatabase(process.env.DB_URL);
 
 var indexRouter = require('./routes/index');
-var loginRouter = require('./routes/login');
-var registerRouter = require('./routes/register');
+
+/** Account Router */
+var accountRouter = require('./routes/account');
 
 /** Manager Router */
 var managerRouter = require('./routes/manager');
@@ -40,8 +41,9 @@ app.use(express.static(path.join(__dirname, 'uploads')));
 
 
 app.use('/', indexRouter);
-app.use('/login', loginRouter);
-app.use('/register', registerRouter);
+
+/** Account Route */
+app.use('/account', accountRouter);
 
 /** Manager Route */
 app.use("/manager", authMiddleWare.isAuthenticated(enums.roles.ProjectManager), managerRouter);
@@ -65,7 +67,7 @@ app.use(function (err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   if (err.name === 'UnauthorizedError') {
-    res.render('login', {error: 'Please login to continue'});
+    res.redirect('account/login');
   }else if (err.status == 404) {
     res.render('error', {
       message: 'Page not found.'
