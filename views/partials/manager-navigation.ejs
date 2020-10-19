@@ -14,18 +14,14 @@
         <a class="nav-link" href="/manager/position/add">Add Position</a>
       </li>
     </ul>
-    <span class="mt-2 mt-md-0">
-      <span class="badge badge-info">
-        Hii, <%= locals.user.name %>
-        <img src="/<%= locals.user.profilePicId %>" alt="Avatar" class="avatar">
-      </span>
-    </span>
     <div class="dropdown show">
-      <a class="btn btn-info dropdown-toggle" href="javascript:void(0)" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <a class="btn btn-info dropdown-toggle" href="javascript:void(0)" role="button" id="dropdownMenuLink"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <%= locals.user.name %> <img src="/<%= locals.user.profilePicId %>" alt="Avatar" class="avatar">
-      </a>    
+      </a>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <form action="/account/logout" class="dropdown-item">
+        <form action="/account/logout" class="dropdown-item" method="POST">
+          <input type="hidden" name="test" id="test">
           <button type="submit" class="btn btn-link">Sign Out</button>
         </form>
       </div>
