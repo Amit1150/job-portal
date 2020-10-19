@@ -18,8 +18,11 @@ Application URL: [https://nagp-amit-3146957.herokuapp.com/account/login](https:/
  - JWT token is stored in cookie and sent along with each request. We have used `role` based authentication for handling diffrent roles in application.
  - Read JWT token from request cookie to validate user authenticity.
  - multer (npm package) is used as middleware for handling `multipart/form-data`, which is primarily used for uploading files. We are storing images in `uploads` folder when user upload image on register page.
- - We have written unit tests using mocha and chai.
- - We have used `.env` file for storing connectionstring and variables.
+ - I have written unit tests using mocha and chai.
+ - I have used `.env` file for storing connectionstring and variables.
+ - I have used `EventEmitter` for sending notification to manager & empployye, when someone applied to job or manager closed the job. 
+ - **Assumption**
+  - I just logged notification message in console.
  
  
  
