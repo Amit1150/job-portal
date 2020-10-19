@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 const Schema = mongoose.Schema;
-const jwtSecret = process.env.JWT_SECRET;
+const jwtSecret = process.env.Jwt_SECRET;
 const saltRounds = process.env.SALT_ROUNDS || 10;
 
 const UserSchema = new Schema({
@@ -33,7 +33,6 @@ UserSchema.methods.generateJwtToken = function () {
   const today = new Date();
   const expirationDate = new Date(today);
   expirationDate.setDate(today.getDate() + 1);
-
   return jwt.sign(
     {
       id: this._id,
