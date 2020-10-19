@@ -20,8 +20,13 @@ UserSchema.methods.setHashedPassword = async function () {
 };
 
 UserSchema.methods.validatePassword = async function (password) {
-  const pwdMatches = await bcrypt.compare(password, this.password);
-  return pwdMatches;
+  try {
+    const pwdMatches = await bcrypt.compare(password, this.password);
+    return pwdMatches;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
 };
 
 UserSchema.methods.generateJwtToken = function () {
