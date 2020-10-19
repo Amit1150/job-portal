@@ -13,12 +13,11 @@ passport.use(
         if (err) {
           return done(err);
         }
-
-        if (!user || !(await user.validatePassword(password))) {
+        else if (!user || !(await user.validatePassword(password))) {
           return done(null, false);
+        }else {
+          return done(null, user);
         }
-
-        return done(null, user);
       }
     );
   })
