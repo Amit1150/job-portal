@@ -25,7 +25,7 @@ Application URL: [https://nagp-amit-3146957.herokuapp.com/account/login](https:/
  - I have used `.env` file for storing connectionstring and variables.
  - I have used `EventEmitter` for sending notification to manager & empployye, when someone applied to job or manager closed the job. 
  - **Assumption**
-  - I just logged notification message in console.
+    - I just logged notification message in console.
  
  ## How run this application
  - Clone this repository
